@@ -236,15 +236,6 @@ def logout():
     resp.delete_cookie('user_id')  # Remove the user_id cookie to log the user out
     return resp
 
-@app.after_request
-def add_security_headers(response):
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'"
-    response.headers["X-Content-Type-Options"] = "nosniff"
-    response.headers["X-Frame-Options"] = "DENY"
-    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
-    response.headers["Referrer-Policy"] = "no-referrer"
-    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
-    return response
 
 # @app.route('/save_game_data', methods=['POST'])
 # def save_game_data():
